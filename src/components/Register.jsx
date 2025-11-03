@@ -1,6 +1,6 @@
 import { useForm } from "../hooks/useForm";
 
-export const Registro = () => {
+export const Register = () => {
     const {from, handleChange, handleReset} = useForm ({
         username: "",
         email: "",
