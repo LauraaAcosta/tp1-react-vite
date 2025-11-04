@@ -1,64 +1,73 @@
 import { useForm } from "../hooks/useForm";
 
 export const Register = () => {
-    const {from, handleChange, handleReset} = useForm ({
-        username: "",
-        email: "",
-        password: "",
-        firstname: "",
-        lastname: "",  
-    });
-     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Datos de registros enviados:', from); 
-        handleReset();
-     };
-     return (
-        <div className= "form-container">
-            <h2>Registro</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Username:</label>
-                <input
-                type="text"
-                name="username"
-                placeholder="Usuario"
-                value={username}
-                onChange={handleChange}
-                required
-                />
+  const { form, handleChange, handleReset } = useForm({
+    username: "",
+    email: "",
+    password: "",
+    firstname: "",
+    lastname: "",
+  });
 
-                <label>Email:</label>
-                <input
-                type="email"
-                name="email"
-                placeholder="Pon tu email"
-                value={email}
-                onChange={handleChange}
-                required
-                />
+  const handleSubmit = (evento) => {
+    evento.preventDefault();
+    console.log(form); // Requisito: Mostrar datos
+    handleReset(); // Requisito: Resetear
+  };
 
-                <label>Nombre:</label>
-                <input
-                type="text"
-                name="firstname"
-                placeholder="Nombre(s)"
-                value={firstname}
-                onChange={handleChange}
-                required
-                />
+  return (
+    <div className="form-container">
+      <h2>Registro</h2>
+      <form onSubmit={handleSubmit}> {/* <--- El evento principal */}
+        
+        {/* Usé la sintaxis concisa de desestructuración para evitar el 'form.' en el JSX, como en Login */}
+        <label>Username</label>
+        <input
+          type="text"
+          className="input"
+          name="username"
+          value={form.username}
+          onChange={handleChange}
+          required
+        />
+        <label>Email:</label>
+        <input
+          type="email"
+          className="input"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
+        <label>Password:</label>
+        <input
+          type="password"
+          className="input"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          required
+        />
 
-                <label>Apellido:</label>
-                <input
-                type="text"
-                name="lastname"
-                placeholder="Apellido(s)"
-                value={lastname}
-                onChange={handleChange}
-                required
-                />                
+        <label>First name:</label>
+        <input
+          type="text"
+          name="firstname"
+          value={form.firstname}
+          onChange={handleChange}
+        />
 
-                <button type= "submit">Registrarse</button>
-            </form>
-        </div>
-     );
+        <label>Last name:</label>
+        <input
+          type="text"
+          name="lastname"
+          value={form.lastname}
+          onChange={handleChange}
+        />
+        <button type="submit"> {/* <--- ¡CORREGIDO! Solo type="submit" */}
+          Registrarse
+        </button>
+      </form>
+    </div>
+  );
 };

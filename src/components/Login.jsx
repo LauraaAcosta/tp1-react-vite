@@ -1,5 +1,4 @@
-import { useForm } from "../hooks/useForm.js";
-
+import { useForm } from "../hooks/useForm";
 
 export const Login = ({ onLogin }) => {
   
@@ -12,19 +11,21 @@ export const Login = ({ onLogin }) => {
 
   const handleSubmit = (evento) => {
     evento.preventDefault();
-    onLogin(username);
+    
+    onLogin(username); 
     handleReset();
+    
   };
 
   return (
     <div className="form-container">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}> 
         <label>Username:</label>
         <input
           type="text"
           name="username"
-          placeholder="Usuario"
+          placeholder="username aqui"
           value={username}
           onChange={handleChange}
           required
@@ -33,7 +34,7 @@ export const Login = ({ onLogin }) => {
         <input
           type="password"
           name="password"
-          placeholder="Contraseña"
+          placeholder="password aqui"
           value={password}
           onChange={handleChange}
           required
