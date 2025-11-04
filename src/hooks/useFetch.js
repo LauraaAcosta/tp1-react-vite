@@ -1,40 +1,30 @@
 import { useEffect, useState } from "react";
 
-const initialFetchState = {
-  data: null,
-  loading: true,
-  hasError: null,
-};
-
 export const useFetch = (url) => {
-  const [state, setState] = useState(initialFetchState);
+  const [state, setState] = useState({
+    data: null,
+    loading: true,
+    hasError: null,
+  });
 
   const getFetch = async () => {
-    if (!url) return;
-    
-    setState(prev => ({ 
-        ...initialFetchState, 
-        loading: true 
-    })); 
-
     try {
+      setState({
+        ...state,
+        loading: true,
+      });
       const resp = await fetch(url);
-      
       if (!resp.ok) {
-        throw new Error(`Error al hacer el fetch: ${resp.statusText}`);
+        throw new Error("Error al hacer el fetch");
       }
-      
       const data = await resp.json();
-      
       await new Promise((resolve) => setTimeout(resolve, 300));
-      
-      setState(prev => ({
-        ...prev, 
+      console.log(data);
+      setState({
+        ...state,
         data: data,
         loading: false,
-        hasError: null,
-      }));
-
+      });
     } catch (error) {
       setState({
         data: null,
@@ -49,7 +39,8 @@ export const useFetch = (url) => {
   }, [url]);
 
   return {
-    ...state,
-    fetchState: state 
+    ...state, // Usa el spread para devolver las propiedades
   };
 };
+
+export default useFetch;

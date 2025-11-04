@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Login } from "../components/Login.jsx";
 import { Register } from "../components/Register.jsx";
 import FirstApp from "../components/FirstApp.jsx";
-// import { FetchSimpsonsApi } from "./FetchSimpsonsApi.jsx";
+import { FetchSimpsonsApi } from "./FetchSimpsonsApi.jsx";
 
 export function App() {
   const [user, setUser] = useState("");
