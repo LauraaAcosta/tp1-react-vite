@@ -26,15 +26,15 @@ export const FetchSimpsonsApi = () => {
 
       <div className="controls">
         <button 
-          onClick={handleDecrement} 
-          disabled={count === 1 || loading}
+          onClick={() => handleDecrement(1)} 
+          // disabled={count === 1 || loading}
           className="button-control"
         >
           Anterior
         </button>
 
         <button 
-          onClick={handleIncrement} 
+          onClick={() => handleIncrement(1)}
           disabled={loading}
           className="button-control"
         >
